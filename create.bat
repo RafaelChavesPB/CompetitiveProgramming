@@ -1,0 +1,1 @@
+cp template.cpp %1.cpp && code %1.cpp
