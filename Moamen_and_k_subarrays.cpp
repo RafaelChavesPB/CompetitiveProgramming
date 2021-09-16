@@ -19,22 +19,5 @@ using namespace std;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int t;
-    cin>>t;
-    while(t--){
-        
-        int n, val = 1, count = 0, acc = 0;
-        cin>>n;
-        while(acc < n){
-            
-            if(n - acc >= val)
-                acc += val;
-            else
-                acc += n-acc;
-            val += 2;
-            count++;
-        }
-        cout<<count<<endl;
-    }
     return 0;
 }

@@ -14,7 +14,7 @@
 #define LL long long
 #define F first
 #define S second
-#define LIM 100001
+#define LIM 51
 using namespace std;
 int main(){
     ios_base::sync_with_stdio(false);
@@ -22,19 +22,21 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-        
-        int n, val = 1, count = 0, acc = 0;
+        int n, temp, acc = 0;
         cin>>n;
-        while(acc < n){
-            
-            if(n - acc >= val)
-                acc += val;
-            else
-                acc += n-acc;
-            val += 2;
-            count++;
+        FOR(0,n){
+         
+            cin>>temp;
+            acc+=temp;
         }
-        cout<<count<<endl;
+        if(acc<n){
+            cout<<1<<endl;
+        }else if(acc == n){
+            cout<<0<<endl;
+        }else{
+            cout<< acc - n<<endl;
+        }
+
     }
     return 0;
 }

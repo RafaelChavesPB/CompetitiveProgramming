@@ -16,25 +16,38 @@
 #define S second
 #define LIM 100001
 using namespace std;
+
+int operation(int num, int ant){
+    int result = 0;
+    int it = 1;
+    while(it <= ant){
+        int a = it&num;
+        int b = it&ant;
+        if(b and !a)
+            result |= it;
+        
+        it = it*2;
+    }
+    return result;
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int t;
     cin>>t;
     while(t--){
-        
-        int n, val = 1, count = 0, acc = 0;
-        cin>>n;
-        while(acc < n){
-            
-            if(n - acc >= val)
-                acc += val;
-            else
-                acc += n-acc;
-            val += 2;
-            count++;
-        }
-        cout<<count<<endl;
+        int n, temp, ant;
+        cin>>n>>ant;
+        int ans[n]={0};
+        FOR(1,n){
+            cin>>temp;
+            ans[i] = operation(temp,ant);
+            ant = temp^ans[i];
+        }    
+        FOR(0,n)
+            cout<<ans[i]<<' ';
+        cout<<endl;
     }
     return 0;
 }

@@ -19,22 +19,19 @@ using namespace std;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    vector<int> preprocess;
+    int it = 1;
+    while(preprocess.size()<1000){
+        if(it%3!=0 and it%10!=3)
+            preprocess.push_back(it);
+        it++;
+    }
     int t;
     cin>>t;
     while(t--){
-        
-        int n, val = 1, count = 0, acc = 0;
+        int n;
         cin>>n;
-        while(acc < n){
-            
-            if(n - acc >= val)
-                acc += val;
-            else
-                acc += n-acc;
-            val += 2;
-            count++;
-        }
-        cout<<count<<endl;
+        cout<<preprocess[n-1]<<endl;
     }
     return 0;
 }
