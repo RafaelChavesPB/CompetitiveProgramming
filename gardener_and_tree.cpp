@@ -38,6 +38,54 @@ using namespace std;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    int t;
+    cin >> t;
+    while(t--){
+        int n, k;
+        cin >> n >> k;
+        vector<vector<int>> adj(n + 1);
+        vector<int> edges(n + 1, 0);
+        vector<int> visited(n + 1, 1);
 
+        int count = n;
+        FOR(1,n){
+            int a, b;
+            cin >> a >> b;
+            adj[b].PB(a);
+            adj[a].PB(b);
+            edges[a]++;
+            edges[b]++;
+        }
+
+        queue<int> now, next;
+       
+        FOR(1, n+1){
+            if(edges[I] <= 1){
+                now.push(I);
+                visited[I] = 0;
+            }
+        }
+
+
+        while(k-- and count){
+            while(now.size()){
+                int a = now.front();
+                now.pop();
+
+                FORIT(adj[a]){
+                    edges[IT]--;
+                    if(edges[IT] == 1 and visited[IT] == 1){
+                        next.push(IT);
+                        visited[IT] = 0;
+                    }
+                }
+
+                count--;
+            }
+            swap(next, now);
+        }
+       
+        cout << count << endl;
+    }
     return 0;
 }

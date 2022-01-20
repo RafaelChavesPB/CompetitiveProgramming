@@ -38,6 +38,64 @@ using namespace std;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    int t;
+    cin >> t;
+    
+    while(t--){
+    
+        int n, m, maxI = 1, maxJ = 1, iniI = 1, iniJ = 1, nowI = 1, nowJ = 1;
+        string commands;
+        cin >> n >> m >> commands;
+        
+        FORIT(commands){
 
+            if(IT == 'U'){
+
+                if(nowI == 1){
+                    maxI++;
+                    
+                    if(maxI > n)
+                        break;
+                    
+                    iniI++;
+
+                }else{
+                    nowI--;
+                }
+
+            }else if(IT == 'D'){
+                
+                if(nowI == n)
+                    break;
+
+                nowI++;
+                maxI = max(maxI, nowI);
+
+            }else if(IT == 'L'){
+                
+                if(nowJ == 1){
+                    maxJ++;
+                    
+                    if(maxJ > m)
+                        break;
+
+                    iniJ++;
+
+                }else{
+                    nowJ--;
+                }
+
+            }else{
+
+                if(nowJ == m)
+                    break;
+
+                nowJ++;
+                maxJ = max(nowJ, maxJ);
+            }
+        }
+
+        cout << iniI << ' ' << iniJ << endl;
+    }
     return 0;
 }

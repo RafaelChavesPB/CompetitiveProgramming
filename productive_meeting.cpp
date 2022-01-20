@@ -38,6 +38,41 @@ using namespace std;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    int t;
+    cin >> t;
+    while(t--){
+        int n;
+        cin >> n;
+        priority_queue<PI> pq;
+        FOR(0, n){
+            int temp;
+            cin >> temp;
+            
+            if(temp)
+                pq.push({temp, I + 1});
+        }
+        vector<PI> ans;
+        
+        while(pq.size() > 1){
+            PI a = pq.top();
+            pq.pop();
+            PI b = pq.top();
+            pq.pop();
+        
+            if(--a.F)
+                pq.push(a);
+        
+            if(--b.F)
+                pq.push(b);
 
+            ans.PB({a.S, b.S});
+        }
+
+        cout << ans.size() << endl;
+
+        FORIT(ans){
+            cout << IT.F << ' ' << IT.S << endl;
+        }
+    }
     return 0;
 }

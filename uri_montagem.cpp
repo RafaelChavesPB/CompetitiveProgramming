@@ -1,6 +1,6 @@
 //Problema Disponível em:
 #include <bits/stdc++.h>
-#define DEBUG
+// #define DEBUG
 #ifdef DEBUG
 #define bug(X) {cout << "*** DEBUG *** " << __LINE__ << " " << #X << " " << X << endl;}
 #define bugC(X) {cout << "*** DEBUG *** " << __LINE__ << " " << X << endl;}
@@ -31,13 +31,51 @@
 #define PB push_back
 #define F first
 #define S second
-#define LIM 3501
+#define LIM 19
 #define MOD 1'000'000'007
 using namespace std;
+
+int pd[(1 << LIM) + 1];
+vector<vector<int>> grid(LIM, vector<int>(LIM));
+
+
+
+int rec(int group, int n, int p){
+    if(p == n + 1)
+        return 0;
+    
+    if(pd[group] == -1){
+
+        pd[group] = MAX;
+        
+        FOR(0, n){
+
+            if(group & (1 << I))
+                continue;
+
+            pd[group] = min(pd[group], rec(group | (1 << I), n, p + 1) + grid[I + 1][p]);
+        }
+
+        return pd[group];
+    }
+
+}
 
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    int n;
+    while(cin >> n, n){
+        
+        FOR(1, n + 1)
+            FORJ(1, n + 1)
+                cin >> grid[I][J];
 
+        fill(pd, pd + (1 << n), -1);
+        cout << rec(0, n, 1) << endl;
+            
+    }
+
+    
     return 0;
 }

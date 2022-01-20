@@ -14,7 +14,7 @@
 #define bugP(X, N){;}
 #define bugM(X, N, M){;}
 #endif
-#define FOR(S, E) for (int I = S; I < E; I++)
+#define FOR(S, E) for (LL I = S; I < E; I++)
 #define FORJ(S, E) for (int J = S; J < E; J++)
 #define FORK(S, E) for (int K = S; K < E; K++)
 #define FORT(S, E) for (int T = S; T < E; T++)
@@ -31,13 +31,35 @@
 #define PB push_back
 #define F first
 #define S second
-#define LIM 3501
+#define LIM 100001
 #define MOD 1'000'000'007
 using namespace std;
 
+bool perfect_cube(LL b3){
+    LL b = cbrt(b3);
+    return b * b * b == b3;
+}
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    int t;
+    cin >> t;
+    while(t--){
+        LL x;
+        cin >> x;
+        bool flag = false;
+        FOR(1, cbrt(x) + 1){
+            LL a3 = I * I * I;
+            LL b3 = x - a3;
+            if(b3 > 0 and perfect_cube(b3)){
+                flag = true;
+            }
+        }
 
+        if(flag)
+            cout << "Yes" << endl;
+        else
+            cout << "No" << endl;
+    }
     return 0;
 }
